@@ -1,0 +1,31 @@
+pdf_pdf:
+
+Converts a bunch of pdf files to other pdf files. This may seem
+redundant, but it was done because the original pdf creator I used was
+pretty inefficient in file sizes. So, I dump it out to ps and then
+encode it back to pdf, which decreased the file sizes by about 50%. It
+takes an argument of a list of files. Simple usage is pdf_pdf *.pdf.
+
+
+png_pdf:
+
+Converts a bunch of png files to pdf files. This was done because I
+had a pile of scanned in bits that I wanted to convert to pdf's for
+distribution. It takes an argument of a list of files. Simple usage is
+png_pdf *.png.
+
+
+ps_pdf:
+
+Converts a bunch of ps files to pdf files. This was done because I had
+a pile of printouts saved in mozilla that I wanted to convert to
+pdf's for storage. It takes an argument of a list of files. Simple
+usage is ps_pdf *.ps<.
+
+
+wpd_sxw:
+
+Converts a bunch of wpd files to sxw files. This was done because I
+had a pile of documents done in WordPerfect some years ago that I
+wanted to convert to sxw for revision and printout. It takes an
+argument of a list of files. Simple usage is wpd_sxw *.wpd.
