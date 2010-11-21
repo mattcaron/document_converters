@@ -1,0 +1,49 @@
+#!/usr/bin/perl -w
+
+use strict;
+use diagnostics;
+
+my @args=@ARGV;
+my $numargs=$#ARGV;
+my $curarg=0;
+my $filename;
+my $newfile;
+my @skipped;
+
+print "Converting...\n";
+
+while ($curarg <= $numargs){
+    $filename=$args[$curarg];
+    if ($filename !~ /\.pdf$/) {
+        print("${filename} does not end with .pdf, skipping\n");
+        push(@skipped, $filename);
+    }
+    else {
+        $newfile = $filename;
+        $newfile =~ s/\.pdf$/\.djvu/;
+        print("${filename} => ${newfile}\n");
+        system("pdf2djvu -o ${newfile} ${filename}");
+        ++$curarg;
+    }
+}
+
+if (scalar(@skipped) > 0){
+    print("WARNING: Skipped " . scalar(@skipped) . " files\n");
+    print("Files skipped are\n");
+    foreach my $file (@skipped){
+        print("     ${file}\n");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
