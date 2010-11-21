@@ -1,0 +1,52 @@
+#!/usr/bin/perl -w
+
+# Written by Matthew Caron
+# Distributed under the GPL.
+# Be happy.
+
+use strict;
+use diagnostics;
+
+if (($#ARGV < 0)||($#ARGV > 1))
+  {
+    &printusage;
+  }
+# Check and make sure there are args before doing 
+# anything with them
+
+my @args=@ARGV;
+
+&main;
+
+sub main {
+  my $infile="$args[0]";
+  my $help=$infile;
+  my $qmark=$infile;
+  my $outfile=$infile;
+  $outfile=~s/dvi$/pdf/; # default name change
+
+  $help=~/help/;
+  $qmark=~/\?/; # ? needs to be escaped in TCSH and shit....
+
+  if (($help eq "help") || ($qmark eq "?")){
+    &printusage;
+  } else {
+    if (!(-e $infile)){
+      print "Error: $infile doesn't exist.\n";
+      exit(0);
+    } else {
+      if ($#args == 1){
+	$outfile=$args[1]; # optional name
+      }
+      system ("dvips -Ppdf -f $infile | ps2pdf - $outfile");
+    }
+  }
+}
+
+sub printusage
+  {
+    print "Usage is dvi2pdf infile.dvi [outfile.pdf]\n";
+    print "If outfile is omitted, outfile is assumed to be infile.pdf\n";
+    exit(0);
+  }
+

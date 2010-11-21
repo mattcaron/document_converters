@@ -1,0 +1,36 @@
+#!/usr/bin/perl -w
+
+use strict;
+use diagnostics;
+
+my @args=@ARGV;
+my $numargs=$#ARGV;
+my $curarg=0;
+my $filename;
+my $tempfilename="thisisasuperrandomtestfilename.pdf";
+
+print "Converting...\n";
+
+# initial cleanup
+system "rm -f $tempfilename";
+
+while ($curarg <= $numargs){
+    $filename=$args[$curarg];
+    print "$filename\n";
+    system "mv $filename $tempfilename";
+    system "pdf2ps $tempfilename - | ps2pdf - $filename";
+    system "rm -f $tempfilename";
+    ++$curarg;
+}
+
+
+
+
+
+
+
+
+
+
+
+

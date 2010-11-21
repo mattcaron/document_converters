@@ -1,0 +1,37 @@
+#!/usr/bin/perl -w
+
+use strict;
+use diagnostics;
+
+my @args=@ARGV;
+my $numargs=$#ARGV;
+my $curarg=0;
+my $filename;
+my $newname;
+my $newend=".pdf";
+
+print "Converting...\n";
+
+while ($curarg <= $numargs){
+    $filename=$args[$curarg];
+    $newname=$filename;
+    if (!($newname=~ s/(\.\w*)$/$newend/)){
+      $newname=$newname.$newend;
+    }
+    print "$filename => $newname\n";
+    system "pngtopnm $filename | pnmtops | ps2pdf - $newname";
+
+    ++$curarg;
+}
+
+
+
+
+
+
+
+
+
+
+
+
