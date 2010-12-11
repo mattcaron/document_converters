@@ -22,7 +22,7 @@ while ($curarg <= $numargs){
         $newfile = $filename;
         $newfile =~ s/\.pdf$/\.djvu/;
         print("${filename} => ${newfile}\n");
-        system("pdf2djvu -o ${newfile} ${filename}");
+        system("pdf2djvu -o \"${newfile}\" \"${filename}\"");
         ++$curarg;
     }
 }
