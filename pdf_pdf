@@ -22,15 +22,3 @@ while ($curarg <= $numargs){
     system "rm -f $tempfilename";
     ++$curarg;
 }
-
-
-
-
-
-
-
-
-
-
-
-
