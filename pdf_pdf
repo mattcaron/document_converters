@@ -16,9 +16,9 @@ system "rm -f $tempfilename";
 
 while ($curarg <= $numargs){
     $filename=$args[$curarg];
-    print "$filename\n";
-    system "mv $filename $tempfilename";
-    system "pdf2ps $tempfilename - | ps2pdf - $filename";
-    system "rm -f $tempfilename";
+    print "${filename}\n";
+    system "mv \"${filename}\" \"${tempfilename}\"";
+    system "pdf2ps \"${tempfilename}\" - | ps2pdf - \"${filename}\"";
+    system "rm -f \"${tempfilename}\"";
     ++$curarg;
 }
